@@ -1,8 +1,8 @@
 # Tool to track calories
 
-Small, lightweight and easy to use tool to track calories for people trying to gain weight. 
+<b>Small, lightweight and easy to use tool to track calories for people trying to gain weight.</b>
 
-Currently supports the following actions:
+<i>Currently supports the following actions:</i>
 
 add - adds an item to the list of today's consumed foods, adds a new item to the database if needed
 
@@ -20,10 +20,10 @@ left - shows how much of different nutrition is still left to be consumed to mee
 
 commands - displays a list of available commands and their description
 
-Version 0.1 (Current)
+<b>Version 0.1 (Current)</b>
 * Program available: gain weight
 * Small database organized through JSON - temporary solution
 
-Version 0.2 (Developing)
+<b>Version 0.2 (Developing)</b>
 * Add and remove - upgraded usage: add [name of product], remove [name of product]
 * Use command ('q' or 'exit') to exit current operation and return to main entry field
