@@ -3,7 +3,6 @@
 **Small, lightweight and easy to use tool to track calories for people trying to gain weight.**
 
 _Currently supports the following actions:_
-
 **add** - adds an item to the list of today's consumed foods, adds a new item to the database if needed
 **remove** - removes an item from the list of today's consumed foods
 **current** - displays today's nutrition values
