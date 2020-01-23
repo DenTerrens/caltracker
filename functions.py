@@ -9,6 +9,7 @@ def check_current():
     with open('data.json', 'r') as file:
         data = json.load(file)
     current_day = data["current_day"]
+
     for k, v in current_day.items():
         print(k + ":", v)
 
@@ -17,9 +18,11 @@ def reset_day():
     """Resets current day's values and deletes all items from eaten_today."""
     with open('data.json', 'r') as file:
         data = json.load(file)
+
     for k in data["current_day"].keys():
         data["current_day"][k] = 0
     data["eaten_today"].clear()
+
     with open('data.json', 'w') as file:
         json.dump(data, file, indent=4)
     print("Values have been reset.")
@@ -32,21 +35,27 @@ def add_item(new_item, p=0, c=0, f=0, cal=0):
         data = json.load(file)
     if new_item not in data["DATABASE"]:
         data["DATABASE"][new_item] = {}
+
         for i in NUTRITION:
             data["DATABASE"][new_item][i] = list_of_args[NUTRITION.index(i)]
+
     if new_item not in data["eaten_today"]:
         data["eaten_today"][new_item] = {}
         data["eaten_today"][new_item]["consumed"] = 1
+
         for i in NUTRITION:
             data["eaten_today"][new_item][i] = list_of_args[NUTRITION.index(i)]
             data["current_day"][i] += list_of_args[NUTRITION.index(i)]
         print(f"Added {new_item} to today's list.")
+
     else:
         data["eaten_today"][new_item]["consumed"] += 1
+
         for i in NUTRITION:
             data["eaten_today"][new_item][i] += list_of_args[NUTRITION.index(i)]
             data["current_day"][i] += list_of_args[NUTRITION.index(i)]
         print(f"Added one more of {new_item} to today's list.")
+
     with open('data.json', 'w') as file:
         json.dump(data, file, indent=4)
 
@@ -60,16 +69,21 @@ def remove_item(existing_item):
     else:
         if data["eaten_today"][existing_item]["consumed"] > 1:
             data["eaten_today"][existing_item]["consumed"] -= 1
+
             for i in NUTRITION:
                 data["eaten_today"][existing_item][i] -= data["DATABASE"][existing_item][i]
+
             for i in NUTRITION:
                 data["current_day"][i] -= data["DATABASE"][existing_item][i]
             print(f"Removed 1 entry of {existing_item} from today's list.")
+
         else:
             data["eaten_today"].pop(existing_item)
+
             for i in NUTRITION:
                 data["current_day"][i] -= data["DATABASE"][existing_item][i]
             print(f"Removed {existing_item} from today's list.")
+
     with open('data.json', 'w') as file:
         json.dump(data, file, indent=4)
 
@@ -78,6 +92,7 @@ def show_items():
     """Displays all items consumed for the day."""
     with open('data.json', 'r') as file:
         data = json.load(file)
+
     for k in data["eaten_today"].keys():
         print(f'{data["eaten_today"][k]["consumed"]} of {k}, \
 total of {data["eaten_today"][k]["consumed"] * data["DATABASE"][k]["Calories"]} calories.')
@@ -87,6 +102,7 @@ def show_daily_needed():
     """Displays daily amount of nutrition needed to be consumed."""
     with open('data.json', 'r') as file:
         data = json.load(file)
+
     for k in data["VALUES"].keys():
         print(f'{k}: {data["VALUES"][k]["daily"]}')
 
@@ -95,6 +111,7 @@ def show_left():
     """Displays what is left to be consumed for the day."""
     with open('data.json', 'r') as file:
         data = json.load(file)
+
     for i in NUTRITION:
         print(f'{i}:', data["VALUES"][i]["daily"] - data["current_day"][i])
 
@@ -103,5 +120,6 @@ def show_commands():
     """Displays all available commands to the user."""
     with open('data.json', 'r') as file:
         data = json.load(file)
+
     for k, v in data["commands"].items():
         print(f"{k.ljust(12)}- {v}")

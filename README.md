@@ -20,10 +20,10 @@ _Currently supports the following actions:_
 
 **commands** - displays a list of available commands and their description
 
+**Version 0.2 (Developing)**
+* Use command ('q' or 'exit') to exit current operation and return to main entry field
+
 **Version 0.1 (Current)**
 * Program available: gain weight
 * Small database organized through JSON - temporary solution
-
-**Version 0.2 (Developing)**
-* Add and remove - upgraded usage: add [name of product], remove [name of product]
-* Use command ('q' or 'exit') to exit current operation and return to main entry field
+* Add and remove - usage: add item_name, remove item_name

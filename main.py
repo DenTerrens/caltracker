@@ -13,17 +13,16 @@ def main():
     print("Available commands:")
     functions.show_commands()
 
-    # getting data loaded, more specifically - list of commands
-    with open('data.json', 'r') as file:
-        data = json.load(file)
-
     # getting user's initial input - main body of the program
     while True:
-        action = input("\nEnter command to execute (enter 'q' anytime to exit program): ").lower().strip().split(' ')
+        action = input("\nEnter command (enter 'q' anytime to exit program): ").lower().strip().split(' ')
         if action[0] == 'q':
             break
+        # getting data loaded, more specifically - list of commands
+        with open('data.json', 'r') as file:
+            data = json.load(file)
         if action[0] not in data["commands"]:
-            print(f"No such command. Please type 'commands' to see all available options.")
+            print(f"No such command. Type 'commands' to see all available options.")
         else:
             # linking commands with actions
             if action[0] == 'add':
@@ -48,7 +47,6 @@ would you like to add one? (y/n) ').lower().strip()
                             # if item added
                             break
                         else:
-                            # if n selected, keep asking for a new item
                             break
                     else:
                         functions.add_item(new_item, p=database["DATABASE"][new_item]["Proteins"],
@@ -96,7 +94,6 @@ Would you like to add a new item? (y/n) ").lower().strip()
                                     # if item added
                                     break
                                 else:
-                                    # if n selected, keep asking for a new item
                                     break
                             else:
                                 functions.add_item(new_item, p=another_data["DATABASE"][new_item]["Proteins"],
