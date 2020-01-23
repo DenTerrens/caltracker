@@ -1,0 +1,72 @@
+{
+    "VALUES": {
+        "Proteins": {
+            "daily": 200,
+            "cal_per_g": 4
+        },
+        "Carbs": {
+            "daily": 405,
+            "cal_per_g": 4
+        },
+        "Fats": {
+            "daily": 120,
+            "cal_per_g": 9
+        },
+        "Calories": {
+            "daily": 3500
+        }
+    },
+    "eaten_today": {
+        "burger": {
+            "consumed": 1,
+            "Proteins": 20,
+            "Carbs": 30,
+            "Fats": 20,
+            "Calories": 400
+        },
+        "sandwich": {
+            "consumed": 1,
+            "Proteins": 10,
+            "Carbs": 50,
+            "Fats": 10,
+            "Calories": 300
+        }
+    },
+    "current_day": {
+        "Proteins": 30,
+        "Carbs": 80,
+        "Fats": 30,
+        "Calories": 700
+    },
+    "days_count": 0,
+    "DATABASE": {
+        "burger": {
+            "Proteins": 20,
+            "Carbs": 30,
+            "Fats": 20,
+            "Calories": 400
+        },
+        "sandwich": {
+            "Proteins": 10,
+            "Carbs": 50,
+            "Fats": 10,
+            "Calories": 300
+        },
+        "figbar": {
+            "Proteins": 4,
+            "Carbs": 30,
+            "Fats": 1,
+            "Calories": 200
+        }
+    },
+    "commands": {
+        "add": "adds an item to the list of today's consumed foods, adds a new item to the database if needed;",
+        "remove": "removes an item from the list of today's consumed foods;",
+        "current": "displays today's nutrition values;",
+        "reset": "resets values for the day, i.e. current values, foods eaten today, etc;",
+        "items": "displays all items consumed for the day;",
+        "daily": "shows daily goal to achieve;",
+        "left": "shows how much of different nutrition is still left to be consumed to meet daily goal;",
+        "commands": "displays a list of available commands and their description."
+    }
+}
