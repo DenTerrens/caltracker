@@ -22,7 +22,7 @@ def main():
         with open('data.json', 'r') as file:
             data = json.load(file)
         if action[0] not in data["commands"]:
-            print(f"No such command. Type 'commands' to see all available options.")
+            print("No such command. Type 'commands' to see all available options.")
         else:
             # linking commands with actions
             if action[0] == 'add':
@@ -37,6 +37,8 @@ def main():
                     if new_item not in database["DATABASE"]:
                         add_to_database = input(f'Could not find {new_item} in database, \
 would you like to add one? (y/n) ').lower().strip()
+                        if add_to_database == 'q':
+                            break
                         if add_to_database == 'y':
                             p = int(input('\nProteins: ').strip())
                             c = int(input('Carbs: ').strip())
@@ -66,6 +68,8 @@ would you like to add one? (y/n) ').lower().strip()
                 functions.check_current()
             elif action[0] == 'reset':
                 confirm_reset = input('Are you sure you want to reset? (y/n) ').lower().strip()
+                if confirm_reset == 'q':
+                    continue
                 if confirm_reset == 'y':
                     functions.reset_day()
             elif action[0] == 'items':
@@ -76,14 +80,20 @@ would you like to add one? (y/n) ').lower().strip()
                     print('\nConsumed today:')
                     functions.show_items()
                 else:
-                    another_item = input("Today's list is empty. \
-Would you like to add a new item? (y/n) ").lower().strip()
+                    another_item = input("Today's list is empty. Would you like to add a new item? \
+(y/n) ").lower().strip()
+                    if another_item == 'q':
+                        continue
                     if another_item == 'y':
                         while True:
                             new_item = input('\nName of product: ').lower().strip()
+                            if new_item == 'q':
+                                break
                             if new_item not in another_data["DATABASE"]:
                                 add_to_database = input(f'Could not find {new_item} in database, \
-                            would you like to add one? (y/n) ').lower().strip()
+would you like to add one? (y/n) ').lower().strip()
+                                if add_to_database == 'q':
+                                    break
                                 if add_to_database == 'y':
                                     p = int(input('\nProteins: ').strip())
                                     c = int(input('Carbs: ').strip())
