@@ -2,6 +2,14 @@
 
 #### **Small, lightweight and easy to use tool to track calories for people trying to gain weight.**
 
+**Version 0.2 (current)**
+* Use 'q' to exit any current operation and return to main entry field
+
+**Version 0.1**
+* Program available: gain weight
+* Small database organized through JSON - temporary solution
+* Add and remove - usage: add item_name, remove item_name
+
 _Currently supports the following actions:_
 
 **add** - adds an item to the list of today's consumed foods, adds a new item to the database if needed
@@ -19,11 +27,3 @@ _Currently supports the following actions:_
 **left** - shows how much of different nutrition is still left to be consumed to meet daily goal
 
 **commands** - displays a list of available commands and their description
-
-**Version 0.2 (Developing)**
-* Use command ('q' or 'exit') to exit current operation and return to main entry field
-
-**Version 0.1 (Current)**
-* Program available: gain weight
-* Small database organized through JSON - temporary solution
-* Add and remove - usage: add item_name, remove item_name

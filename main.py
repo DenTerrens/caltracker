@@ -5,6 +5,9 @@ import functions
 import json
 
 
+NUTRITION = ['Proteins', 'Carbs', 'Fats', 'Calories']
+
+
 def main():
     # starting point
     print("Your current nutrition values:")
@@ -32,30 +35,51 @@ def main():
                 with open('data.json', 'r') as f:
                     database = json.load(f)
                 # logic for adding new item to database vs getting that item from db into eaten today list
-                while True:
-                    new_item = action[1]
-                    if new_item not in database["DATABASE"]:
-                        add_to_database = input(f'Could not find {new_item} in database, \
-would you like to add one? (y/n) ').lower().strip()
-                        if add_to_database == 'q':
-                            break
-                        if add_to_database == 'y':
-                            p = int(input('\nProteins: ').strip())
-                            c = int(input('Carbs: ').strip())
-                            f = int(input('Fats: ').strip())
-                            cal = int(input('Calories: ').strip())
-                            print(f'Added {new_item} to the database.')
-                            functions.add_item(new_item, p=p, c=c, f=f, cal=cal)
-                            # if item added
-                            break
-                        else:
-                            break
+                new_item = action[1]
+                if new_item not in database["DATABASE"]:
+                    add_to_database = input(f'Unable to find {new_item} in the database, \
+would you like to add it? (y/n) ').lower().strip()
+                    if add_to_database == 'q':
+                        continue
+                    if add_to_database == 'y':
+                        p, c, f, cal = '', '', '', ''
+                        nutr = [p, c, f, cal]
+                        exit_flag = True
+                        not_all_four = False
+                        exited = False
+                        for i in NUTRITION:
+                            if exit_flag is False:
+                                break
+                            while True:
+                                nutr[NUTRITION.index(i)] = input(f"{i}: ").strip()
+                                if nutr[NUTRITION.index(i)] == 'q':
+                                    exit_flag = False
+                                    not_all_four = True
+                                    exited = True
+                                    break
+                                if nutr[NUTRITION.index(i)] == '':
+                                    print("Cannot skip values. Enter 0 for empty value.")
+                                else:
+                                    try:
+                                        nutr[NUTRITION.index(i)] = int(nutr[NUTRITION.index(i)])
+                                    except ValueError:
+                                        print("Please use only digits.")
+                                    else:
+                                        break
+                        if not exited:
+                            if not_all_four is True:
+                                print("Need all 4 nutrition values to continue.")
+                            else:
+                                functions.add_item(new_item, p=nutr[0], c=nutr[1], f=nutr[2], cal=nutr[3])
+                                print(f'Added {new_item} to the database.')
                     else:
-                        functions.add_item(new_item, p=database["DATABASE"][new_item]["Proteins"],
-                                           c=database["DATABASE"][new_item]["Carbs"],
-                                           f=database["DATABASE"][new_item]["Fats"],
-                                           cal=database["DATABASE"][new_item]["Calories"])
-                        break
+                        continue
+
+                else:
+                    functions.add_item(new_item, p=database["DATABASE"][new_item]["Proteins"],
+                                       c=database["DATABASE"][new_item]["Carbs"],
+                                       f=database["DATABASE"][new_item]["Fats"],
+                                       cal=database["DATABASE"][new_item]["Calories"])
 
             elif action[0] == 'remove':
                 if len(action) != 2:
@@ -85,7 +109,10 @@ would you like to add one? (y/n) ').lower().strip()
                     if another_item == 'q':
                         continue
                     if another_item == 'y':
+                        exit_choosing_product = False
                         while True:
+                            if exit_choosing_product is True:
+                                break
                             new_item = input('\nName of product: ').lower().strip()
                             if new_item == 'q':
                                 break
@@ -95,16 +122,40 @@ would you like to add one? (y/n) ').lower().strip()
                                 if add_to_database == 'q':
                                     break
                                 if add_to_database == 'y':
-                                    p = int(input('\nProteins: ').strip())
-                                    c = int(input('Carbs: ').strip())
-                                    f = int(input('Fats: ').strip())
-                                    cal = int(input('Calories: ').strip())
-                                    print(f'Added {new_item} to the database.')
-                                    functions.add_item(new_item, p=p, c=c, f=f, cal=cal)
-                                    # if item added
-                                    break
+                                    p, c, f, cal = '', '', '', ''
+                                    nutr = [p, c, f, cal]
+                                    exit_flag = True
+                                    not_all_four = False
+                                    exited = False
+                                    for i in NUTRITION:
+                                        if exit_flag is False:
+                                            break
+                                        while True:
+                                            nutr[NUTRITION.index(i)] = input(f"{i}: ").strip()
+                                            if nutr[NUTRITION.index(i)] == 'q':
+                                                exit_flag = False
+                                                not_all_four = True
+                                                exited = True
+                                                exit_choosing_product = True
+                                                break
+                                            if nutr[NUTRITION.index(i)] == '':
+                                                print("Cannot skip values. Enter 0 for empty value.")
+                                            else:
+                                                try:
+                                                    nutr[NUTRITION.index(i)] = int(nutr[NUTRITION.index(i)])
+                                                except ValueError:
+                                                    print("Please use only digits.")
+                                                else:
+                                                    break
+                                    if not exited:
+                                        if not_all_four is True:
+                                            print("Need all 4 nutrition values to continue.")
+                                        else:
+                                            functions.add_item(new_item, p=nutr[0], c=nutr[1], f=nutr[2], cal=nutr[3])
+                                            print(f'Added {new_item} to the database.')
+                                            exit_choosing_product = True
                                 else:
-                                    break
+                                    continue
                             else:
                                 functions.add_item(new_item, p=another_data["DATABASE"][new_item]["Proteins"],
                                                    c=another_data["DATABASE"][new_item]["Carbs"],

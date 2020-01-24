@@ -42,6 +42,36 @@
             "Carbs": 30,
             "Fats": 1,
             "Calories": 200
+        },
+        "mbn": {
+            "Proteins": 6,
+            "Carbs": 4,
+            "Fats": 5,
+            "Calories": 3
+        },
+        "cvb": {
+            "Proteins": 8,
+            "Carbs": 4,
+            "Fats": 10,
+            "Calories": 300
+        },
+        "kfjg": {
+            "Proteins": 4,
+            "Carbs": 5,
+            "Fats": 6,
+            "Calories": 3
+        },
+        "bacon": {
+            "Proteins": 7,
+            "Carbs": 10,
+            "Fats": 20,
+            "Calories": 300
+        },
+        "opfg": {
+            "Proteins": 6,
+            "Carbs": 7,
+            "Fats": 4,
+            "Calories": 2
         }
     },
     "commands": {
