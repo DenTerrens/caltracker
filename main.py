@@ -44,16 +44,17 @@ would you like to add it? (y/n) ').lower().strip()
                     if add_to_database == 'y':
                         p, c, f, cal = '', '', '', ''
                         nutr = [p, c, f, cal]
-                        exit_flag = True
-                        not_all_four = False
-                        exited = False
+                        exit_flag = False  # flag to avoid the need to enter all 4 values if one of them was quit
+                        not_all_four = False  # flag to prohibit values to go into database if not all 4 were entered
+                        exited = False  # flag to avoid displaying a message that all 4 values are needed
                         for i in NUTRITION:
-                            if exit_flag is False:
+                            if exit_flag:
                                 break
                             while True:
                                 nutr[NUTRITION.index(i)] = input(f"{i}: ").strip()
+                                # changes flags which results in returning to main entry field
                                 if nutr[NUTRITION.index(i)] == 'q':
-                                    exit_flag = False
+                                    exit_flag = True
                                     not_all_four = True
                                     exited = True
                                     break
@@ -67,7 +68,9 @@ would you like to add it? (y/n) ').lower().strip()
                                     else:
                                         break
                         if not exited:
-                            if not_all_four is True:
+                            # the following condition is questionable, I will leave it here for now just in case
+                            # ...'cause it's working :D
+                            if not_all_four:
                                 print("Need all 4 nutrition values to continue.")
                             else:
                                 functions.add_item(new_item, p=nutr[0], c=nutr[1], f=nutr[2], cal=nutr[3])
@@ -109,9 +112,9 @@ would you like to add it? (y/n) ').lower().strip()
                     if another_item == 'q':
                         continue
                     if another_item == 'y':
-                        exit_choosing_product = False
+                        exit_choosing_product = False  # flag to exit to main entry field after adding a new item
                         while True:
-                            if exit_choosing_product is True:
+                            if exit_choosing_product:
                                 break
                             new_item = input('\nName of product: ').lower().strip()
                             if new_item == 'q':
@@ -122,18 +125,20 @@ would you like to add one? (y/n) ').lower().strip()
                                 if add_to_database == 'q':
                                     break
                                 if add_to_database == 'y':
+                                    # below is a very close replication of the above condition but with 1 more flag
+                                    # may be optimized later if needed
                                     p, c, f, cal = '', '', '', ''
                                     nutr = [p, c, f, cal]
-                                    exit_flag = True
+                                    exit_flag = False
                                     not_all_four = False
                                     exited = False
                                     for i in NUTRITION:
-                                        if exit_flag is False:
+                                        if exit_flag:
                                             break
                                         while True:
                                             nutr[NUTRITION.index(i)] = input(f"{i}: ").strip()
                                             if nutr[NUTRITION.index(i)] == 'q':
-                                                exit_flag = False
+                                                exit_flag = True
                                                 not_all_four = True
                                                 exited = True
                                                 exit_choosing_product = True
@@ -148,7 +153,7 @@ would you like to add one? (y/n) ').lower().strip()
                                                 else:
                                                     break
                                     if not exited:
-                                        if not_all_four is True:
+                                        if not_all_four:
                                             print("Need all 4 nutrition values to continue.")
                                         else:
                                             functions.add_item(new_item, p=nutr[0], c=nutr[1], f=nutr[2], cal=nutr[3])
