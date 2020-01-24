@@ -4,6 +4,8 @@
 
 **Version 0.2 (current)**
 * Use 'q' to exit any current operation and return to main entry field
+* Nutrition values accept only digits
+* Added a flag that does not allow to skip values when entering new product info
 
 **Version 0.1**
 * Program available: gain weight
