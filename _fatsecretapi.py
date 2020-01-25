@@ -65,5 +65,35 @@ data_get = {
 r_get = requests.post(endpoint, headers=headers, data=data_get)
 j_get = json.loads(r_get.text)
 get_main = j_get['food']
-get_servings = j_get['food']['servings']
-print(get_servings)
+get_servings = j_get['food']['servings']['serving']
+
+ids = []
+for i in range(len(get_servings)):
+    ids.append(i + 1)
+
+serving_ids = {}
+for i in range(len(get_servings)):
+    serving_ids[get_servings[i]['measurement_description']] = ids[i]
+    print(f"{get_servings[i]['measurement_description'].ljust(12)} - {serving_ids[get_servings[i]['measurement_description']]}")
+
+p, c, f, cal = '', '', '', ''
+while True:
+    serving = input("\nSelect serving (type its number): ").lower().strip()
+    if serving == 'q':
+        break
+    if serving == '':
+        print('Serving size must be specified.')
+    else:
+        try:
+            serving = int(serving)
+        except ValueError:
+            print("Use serving's number only.")
+        else:
+            selected_serving = get_servings[serving]
+            print(f"\nSelected item: {choice}")
+            print(f"Serving size: {get_servings[serving]['measurement_description']}")
+            print(f"Proteins: {selected_serving['protein']}")
+            print(f"Carbs: {selected_serving['carbohydrate']}")
+            print(f"Fats: {selected_serving['fat']}")
+            print(f"Calories: {selected_serving['calories']}")
+            break
