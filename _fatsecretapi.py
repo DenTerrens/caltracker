@@ -74,7 +74,7 @@ for i in range(len(get_servings)):
 serving_ids = {}
 for i in range(len(get_servings)):
     serving_ids[get_servings[i]['measurement_description']] = ids[i]
-    print(f"{get_servings[i]['measurement_description'].ljust(12)} - {serving_ids[get_servings[i]['measurement_description']]}")
+    print(f"{serving_ids[get_servings[i]['measurement_description']]} - {get_servings[i]['measurement_description']}")
 
 p, c, f, cal = '', '', '', ''
 while True:
@@ -91,7 +91,7 @@ while True:
         else:
             selected_serving = get_servings[serving]
             print(f"\nSelected item: {choice}")
-            print(f"Serving size: {get_servings[serving]['measurement_description']}")
+            print(f"Serving size: {get_servings[serving - 1]['measurement_description']}")
             print(f"Proteins: {selected_serving['protein']}")
             print(f"Carbs: {selected_serving['carbohydrate']}")
             print(f"Fats: {selected_serving['fat']}")
