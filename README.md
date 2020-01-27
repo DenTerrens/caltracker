@@ -3,7 +3,7 @@
 #### **Small, lightweight and easy to use tool to track calories for people trying to gain weight.**
 
 **Version 0.3 (current)**
-* Added integration with FatSecret API to allow user to search global database of foods
+* Added integration with FatSecret API to allow users to search global database of foods
 * For performance reasons, all DB calls first query local DB and only then go to global DB
 
 **Version 0.2**
