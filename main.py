@@ -36,6 +36,8 @@ def main():
                 with open('data.json', 'r') as f:
                     database = json.load(f)
                 # logic for adding new item to database vs getting that item from db into eaten today list
+                # the following only gives option to search external DB when no item was found in data.json
+                # the more user adds to data.json, the less there will be a need to call external API
                 new_item = action[1].lower()
                 if new_item not in database["DATABASE"]:
                     print(f'Unable to find {new_item} in local database. You can:')
@@ -76,8 +78,8 @@ def main():
                             if not_all_four:
                                 print("Need all 4 nutrition values to continue.")
                             else:
-                                functions.add_item(new_item, p=nutr[0], c=nutr[1], f=nutr[2], cal=nutr[3])
                                 print(f'Added {new_item} to the database.')
+                                functions.add_item(new_item, p=nutr[0], c=nutr[1], f=nutr[2], cal=nutr[3])
                     elif add_to_database == 'search':
                         global_DB_apis.fatsecret(new_item)
 
