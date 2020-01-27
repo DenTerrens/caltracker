@@ -2,7 +2,11 @@
 
 #### **Small, lightweight and easy to use tool to track calories for people trying to gain weight.**
 
-**Version 0.2 (current)**
+**Version 0.3 (current)**
+* Added integration with FatSecret API to allow user to search global database of foods
+* For performance reasons, all DB calls first query local DB and only then go to global DB
+
+**Version 0.2**
 * Use 'q' to exit any current operation and return to main entry field
 * Nutrition values accept only digits
 * Added a flag that does not allow to skip values when entering new product info

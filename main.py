@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 
 
-import functions
 import json
+import functions
+import global_DB_apis
 
 
 NUTRITION = ['Proteins', 'Carbs', 'Fats', 'Calories']
@@ -35,13 +36,15 @@ def main():
                 with open('data.json', 'r') as f:
                     database = json.load(f)
                 # logic for adding new item to database vs getting that item from db into eaten today list
-                new_item = action[1]
+                new_item = action[1].lower()
                 if new_item not in database["DATABASE"]:
-                    add_to_database = input(f'Unable to find {new_item} in the database, \
-would you like to add it? (y/n) ').lower().strip()
-                    if add_to_database == 'q':
+                    print(f'Unable to find {new_item} in local database. You can:')
+                    print(f"- Enter nutrients of {new_item} directly, type 'enter' to do it.")
+                    print(f"- Search for {new_item} in global database, type 'search' for that.")
+                    add_to_database = input("Type 'enter' or 'search': ").lower().strip()
+                    if add_to_database == 'q' or add_to_database == '':
                         continue
-                    if add_to_database == 'y':
+                    if add_to_database == 'enter':
                         p, c, f, cal = '', '', '', ''
                         nutr = [p, c, f, cal]
                         exit_flag = False  # flag to avoid the need to enter all 4 values if one of them was quit
@@ -75,8 +78,8 @@ would you like to add it? (y/n) ').lower().strip()
                             else:
                                 functions.add_item(new_item, p=nutr[0], c=nutr[1], f=nutr[2], cal=nutr[3])
                                 print(f'Added {new_item} to the database.')
-                    else:
-                        continue
+                    elif add_to_database == 'search':
+                        global_DB_apis.fatsecret(new_item)
 
                 else:
                     functions.add_item(new_item, p=database["DATABASE"][new_item]["Proteins"],

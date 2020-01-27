@@ -16,26 +16,28 @@
             "daily": 3500
         }
     },
-    "eaten_today": {},
+    "eaten_today": {
+        "bread": {
+            "consumed": 1,
+            "Proteins": 2.29,
+            "Carbs": 15.18,
+            "Fats": 0.99,
+            "Calories": 80.0
+        }
+    },
     "current_day": {
-        "Proteins": 0,
-        "Carbs": 0,
-        "Fats": 0,
-        "Calories": 0
+        "Proteins": 2.29,
+        "Carbs": 15.18,
+        "Fats": 0.99,
+        "Calories": 80.0
     },
     "days_count": 0,
     "DATABASE": {
-        "ghfn": {
-            "Proteins": 5,
-            "Carbs": 4,
-            "Fats": 3,
-            "Calories": 6
-        },
-        "rth": {
-            "Proteins": 346,
-            "Carbs": 3456,
-            "Fats": 456,
-            "Calories": 345
+        "bread": {
+            "Proteins": 2.29,
+            "Carbs": 15.18,
+            "Fats": 0.99,
+            "Calories": 80.0
         }
     },
     "commands": {
