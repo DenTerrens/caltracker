@@ -16,20 +16,12 @@
             "daily": 3500
         }
     },
-    "eaten_today": {
-        "bread": {
-            "consumed": 1,
-            "Proteins": 2.29,
-            "Carbs": 15.18,
-            "Fats": 0.99,
-            "Calories": 80.0
-        }
-    },
+    "eaten_today": {},
     "current_day": {
-        "Proteins": 2.29,
-        "Carbs": 15.18,
-        "Fats": 0.99,
-        "Calories": 80.0
+        "Proteins": 0,
+        "Carbs": 0,
+        "Fats": 0,
+        "Calories": 0
     },
     "days_count": 0,
     "DATABASE": {

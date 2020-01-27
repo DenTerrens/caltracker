@@ -5,7 +5,6 @@ import json
 import functions
 import global_DB_apis
 
-
 NUTRITION = ['Proteins', 'Carbs', 'Fats', 'Calories']
 
 
