@@ -40,9 +40,9 @@ def main():
                 new_item = action[1].lower()
                 if new_item not in database["DATABASE"]:
                     print(f'Unable to find {new_item} in local database. You can:')
-                    print(f"- Enter nutrients of {new_item} directly, type 'enter' to do it.")
-                    print(f"- Search for {new_item} in global database, type 'search' for that.")
-                    add_to_database = input("Type 'enter' or 'search': ").lower().strip()
+                    print(f"- Enter its nutrients directly (enter)")
+                    print(f"- Search for it in global database (search)")
+                    add_to_database = input("\nType 'enter' or 'search': ").lower().strip()
                     if add_to_database == 'q' or add_to_database == '':
                         continue
                     if add_to_database == 'enter':
@@ -51,6 +51,7 @@ def main():
                         exit_flag = False  # flag to avoid the need to enter all 4 values if one of them was quit
                         not_all_four = False  # flag to prohibit values to go into database if not all 4 were entered
                         exited = False  # flag to avoid displaying a message that all 4 values are needed
+
                         for i in NUTRITION:
                             if exit_flag:
                                 break
@@ -81,7 +82,6 @@ def main():
                                 functions.add_item(new_item, p=nutr[0], c=nutr[1], f=nutr[2], cal=nutr[3])
                     elif add_to_database == 'search':
                         global_DB_apis.fatsecret(new_item)
-
                 else:
                     functions.add_item(new_item, p=database["DATABASE"][new_item]["Proteins"],
                                        c=database["DATABASE"][new_item]["Carbs"],
@@ -123,24 +123,26 @@ def main():
                             new_item = input('\nName of product: ').lower().strip()
                             if new_item == 'q':
                                 break
-                            if new_item not in another_data["DATABASE"]:
-                                add_to_database = input(f'Could not find {new_item} in database, \
-would you like to add one? (y/n) ').lower().strip()
-                                if add_to_database == 'q':
-                                    break
-                                if add_to_database == 'y':
-                                    # below is a very close replication of the above condition but with 1 more flag
-                                    # may be optimized later if needed
+                            if new_item not in database["DATABASE"]:
+                                print(f'Unable to find {new_item} in local database. You can:')
+                                print(f"- Enter its nutrients directly (enter)")
+                                print(f"- Search for it in global database (search)")
+                                add_to_database = input("\nType 'enter' or 'search': ").lower().strip()
+                                if add_to_database == 'q' or add_to_database == '':
+                                    continue
+                                if add_to_database == 'enter':
                                     p, c, f, cal = '', '', '', ''
                                     nutr = [p, c, f, cal]
                                     exit_flag = False
                                     not_all_four = False
                                     exited = False
+
                                     for i in NUTRITION:
                                         if exit_flag:
                                             break
                                         while True:
                                             nutr[NUTRITION.index(i)] = input(f"{i}: ").strip()
+                                            # changes flags which results in returning to main entry field
                                             if nutr[NUTRITION.index(i)] == 'q':
                                                 exit_flag = True
                                                 not_all_four = True
@@ -160,16 +162,16 @@ would you like to add one? (y/n) ').lower().strip()
                                         if not_all_four:
                                             print("Need all 4 nutrition values to continue.")
                                         else:
-                                            functions.add_item(new_item, p=nutr[0], c=nutr[1], f=nutr[2], cal=nutr[3])
                                             print(f'Added {new_item} to the database.')
-                                            exit_choosing_product = True
-                                else:
-                                    continue
+                                            functions.add_item(new_item, p=nutr[0], c=nutr[1], f=nutr[2], cal=nutr[3])
+                                elif add_to_database == 'search':
+                                    global_DB_apis.fatsecret(new_item)
+                                    break
                             else:
-                                functions.add_item(new_item, p=another_data["DATABASE"][new_item]["Proteins"],
-                                                   c=another_data["DATABASE"][new_item]["Carbs"],
-                                                   f=another_data["DATABASE"][new_item]["Fats"],
-                                                   cal=another_data["DATABASE"][new_item]["Calories"])
+                                functions.add_item(new_item, p=database["DATABASE"][new_item]["Proteins"],
+                                                   c=database["DATABASE"][new_item]["Carbs"],
+                                                   f=database["DATABASE"][new_item]["Fats"],
+                                                   cal=database["DATABASE"][new_item]["Calories"])
                                 break
 
             elif action[0] == 'daily':

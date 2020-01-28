@@ -30,6 +30,36 @@
             "Carbs": 15.18,
             "Fats": 0.99,
             "Calories": 80.0
+        },
+        "italian sausage": {
+            "Proteins": 13.0,
+            "Carbs": 2.9,
+            "Fats": 18.57,
+            "Calories": 234.0
+        },
+        "100% whole wheat or 100% whole grain waffle": {
+            "Proteins": 3.41,
+            "Carbs": 12.33,
+            "Fats": 4.15,
+            "Calories": 99.0
+        },
+        "fresh pork sausage": {
+            "Proteins": 4.28,
+            "Carbs": 0.0,
+            "Fats": 7.52,
+            "Calories": 86.0
+        },
+        "pork chop": {
+            "Proteins": 35.45,
+            "Carbs": 0.0,
+            "Fats": 18.5,
+            "Calories": 318.0
+        },
+        "roast beef": {
+            "Proteins": 16.32,
+            "Carbs": 0.0,
+            "Fats": 10.91,
+            "Calories": 168.0
         }
     },
     "commands": {
