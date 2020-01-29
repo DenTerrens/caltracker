@@ -123,3 +123,33 @@ def show_commands():
 
     for k, v in data["commands"].items():
         print(f"{k.ljust(12)}- {v}")
+
+
+def days_count():
+    """Displays how many days the path is followed."""
+    with open('data.json', 'r') as file:
+        data = json.load(file)
+
+    return data['days_count']
+
+
+def incr_days_count():
+    """Increments days_count when a new day starts."""
+    with open('data.json', 'r') as file:
+        data = json.load(file)
+    
+    data['days_count'] += 1
+
+    with open('data.json', 'w') as file:
+        json.dump(data, file, indent=4)
+
+
+def reset_days_count():
+    """Resets days_count if user wants to restart progress."""
+    with open('data.json', 'r') as file:
+        data = json.load(file)
+
+    data['days_count'] = 0
+
+    with open('data.json', 'w') as file:
+        json.dump(data, file, indent=4)

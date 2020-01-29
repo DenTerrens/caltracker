@@ -9,6 +9,15 @@ NUTRITION = ['Proteins', 'Carbs', 'Fats', 'Calories']
 
 
 def main():
+    new_day = input('New day? (y/n) ').lower().strip()
+    if new_day == 'y':
+        functions.reset_day()
+        functions.incr_days_count()
+        print(f'\nWelcome to day {functions.days_count()}!')
+    elif new_day == 'n':
+        print(f'\nWelcome to day {functions.days_count()}!')
+    else:
+        return
     # starting point
     print("Your current nutrition values:")
     functions.check_current()
@@ -80,13 +89,19 @@ def main():
                             else:
                                 print(f'Added {new_item} to the database.')
                                 functions.add_item(new_item, p=nutr[0], c=nutr[1], f=nutr[2], cal=nutr[3])
+                                print("\nTo reach today goal, you need:")
+                                functions.show_left()
                     elif add_to_database == 'search':
                         global_DB_apis.fatsecret(new_item)
+                        print("\nTo reach today goal, you need:")
+                        functions.show_left()
                 else:
                     functions.add_item(new_item, p=database["DATABASE"][new_item]["Proteins"],
                                        c=database["DATABASE"][new_item]["Carbs"],
                                        f=database["DATABASE"][new_item]["Fats"],
                                        cal=database["DATABASE"][new_item]["Calories"])
+                    print("\nTo reach today goal, you need:")
+                    functions.show_left()
 
             elif action[0] == 'remove':
                 if len(action) != 2:
@@ -164,14 +179,20 @@ def main():
                                         else:
                                             print(f'Added {new_item} to the database.')
                                             functions.add_item(new_item, p=nutr[0], c=nutr[1], f=nutr[2], cal=nutr[3])
+                                            print("\nTo reach today goal, you need:")
+                                            functions.show_left()
                                 elif add_to_database == 'search':
                                     global_DB_apis.fatsecret(new_item)
+                                    print("\nTo reach today goal, you need:")
+                                    functions.show_left()
                                     break
                             else:
                                 functions.add_item(new_item, p=database["DATABASE"][new_item]["Proteins"],
                                                    c=database["DATABASE"][new_item]["Carbs"],
                                                    f=database["DATABASE"][new_item]["Fats"],
                                                    cal=database["DATABASE"][new_item]["Calories"])
+                                print("\nTo reach today goal, you need:")
+                                functions.show_left()
                                 break
 
             elif action[0] == 'daily':
@@ -180,6 +201,9 @@ def main():
             elif action[0] == 'left':
                 print("\nLeft to achieve today's goal:")
                 functions.show_left()
+            elif action[0] == 'startover':
+                print('\nProgress has been reset.')
+                functions.reset_days_count()
             elif action[0] == 'commands':
                 print('\nAvailable commands:')
                 functions.show_commands()

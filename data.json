@@ -60,6 +60,18 @@
             "Carbs": 0.0,
             "Fats": 10.91,
             "Calories": 168.0
+        },
+        "white rice": {
+            "Proteins": 2.66,
+            "Carbs": 27.9,
+            "Fats": 0.28,
+            "Calories": 129.0
+        },
+        "bacon (cured, pan-fried, cooked)": {
+            "Proteins": 9.97,
+            "Carbs": 0.39,
+            "Fats": 10.48,
+            "Calories": 139.0
         }
     },
     "commands": {
@@ -70,6 +82,7 @@
         "items": "displays all items consumed for the day",
         "daily": "shows daily goal to achieve",
         "left": "shows how much of different nutrition is still left to be consumed to meet daily goal",
+        "startover": "resets progress, specifically - number of days the program has been followed for",
         "commands": "displays a list of available commands and their description"
     }
 }
